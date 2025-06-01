@@ -12,7 +12,7 @@ This folder contains the Arc42-based software architecture documentation for the
 6. [Runtime View](06_runtime_view.md)
 7. [Deployment View](07_deployment_view.md)
 8. [Crosscutting Concepts](08_crosscutting_concepts.md)
-9. [Design Decisions](09_design_decisions.md)
+9. [Design Decisions](09_architecture_decisions.md)
 10. [Quality Scenarios](10_quality_scenarios.md)
 11. [Technical Risks](11_technical_risks.md)
 12. [Glossary](12_glossary.md)
