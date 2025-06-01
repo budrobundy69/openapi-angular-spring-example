@@ -1,0 +1,30 @@
+name: 🧪 Backend CI
+
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'openjdk'
+          java-version: '24'  # or 'latest'
+
+      - name: 🏗️ Build with Maven
+        run: mvn -B -f backend/pom.xml clean install
+
+      - name: 🧪 Run Tests
+        run: mvn -B -f backend/pom.xml test
