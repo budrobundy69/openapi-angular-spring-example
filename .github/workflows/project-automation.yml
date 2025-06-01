@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Move assigned issues to In Progress
         if: github.event_name == 'issues' && github.event.action == 'assigned'
-        uses: actions/add-to-project@v1
+        uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,7 +25,7 @@ jobs:
 
       - name: Move PR-linked issues to In Progress
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
-        uses: actions/add-to-project@v1
+        uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
 
       - name: Move issues or PRs to Done
         if: github.event.action == 'closed'
-        uses: actions/add-to-project@v1
+        uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
