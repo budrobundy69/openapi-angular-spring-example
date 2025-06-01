@@ -1,4 +1,4 @@
-name: Assign Items to GitHub Project 4
+name: Assign Items to GitHub Project v2 (Project 4)
 
 on:
   issues:
@@ -9,9 +9,8 @@ on:
 jobs:
   assign-to-project:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Assign to GitHub Project v2
+      - name: Assign to GitHub Project
         uses: srggrs/assign-one-project-github-action@1.3.1
         with:
           project: https://github.com/users/budrobundy69/projects/4
