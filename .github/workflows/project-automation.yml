@@ -13,14 +13,13 @@ jobs:
       issues: write
       pull-requests: write
       contents: read
-      project: write
 
     steps:
       - name: Move assigned issues to In Progress
         if: github.event_name == 'issues' && github.event.action == 'assigned'
         uses: actions/add-to-project@v1
         with:
-          project-url: https://github.com/users/budrobundy69/projects/4
+          project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
           status: In Progress
 
@@ -28,7 +27,7 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: actions/add-to-project@v1
         with:
-          project-url: https://github.com/users/budrobundy69/projects/4
+          project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
           status: In Progress
 
@@ -36,6 +35,6 @@ jobs:
         if: github.event.action == 'closed'
         uses: actions/add-to-project@v1
         with:
-          project-url: https://github.com/users/budrobundy69/projects/4
+          project-url: https://github.com/users/budrobundy69/projects/1
           github-token: ${{ secrets.GITHUB_TOKEN }}
           status: Done
