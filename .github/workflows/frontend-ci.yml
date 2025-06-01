@@ -1,4 +1,40 @@
-name: frontend-ci.yml
+name: 🧪 Frontend CI
+
 on:
+  push:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    paths:
+      - 'frontend/**'
 
 jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: 🧹 Lint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: 🧪 Run Unit Tests
+        working-directory: frontend
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: 🏗️ Build App
+        working-directory: frontend
+        run: npm run build
