@@ -1,0 +1,1 @@
+# openapi-angular-spring-example
