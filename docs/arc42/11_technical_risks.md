@@ -1,10 +1,10 @@
 # 11. Technical Risks
 
-This section documents key risks and potential problems that could affect system success.
+This section documents key risks and potential problems that could affect system success — including known technical debt.
 
 ---
 
-## 11.1 Overview of Identified Risks
+## 11.1 Identified Risks
 
 | Risk ID | Description | Likelihood | Impact | Mitigation |
 |--------|-------------|------------|--------|------------|
@@ -32,3 +32,25 @@ This section documents key risks and potential problems that could affect system
 - Will the final deployment platform always be Cloud Foundry, or is Kubernetes expected later?
 - Will authentication be fully integrated (OAuth2) or handled by a gateway?
 - How is OpenAPI versioning across releases managed?
+
+---
+
+## 11.4 Known Technical Debt
+
+| ID | Description | Reason | Planned Resolution |
+|----|-------------|--------|---------------------|
+| TD1 | Full OAuth2/JWT security not implemented yet | Prioritized MVP and public endpoints | Implement before protected resource rollout (M2) |
+| TD2 | Manual OpenAPI → TS client generation | CI automation pending | Integrate generator into GitHub Actions workflow |
+| TD3 | No API versioning strategy defined yet | API is still unstable in MVP | Introduce `/v1` base path and semantic versioning policy |
+| TD4 | Cloud Foundry buildpack behavior is not fully documented | Early focus was on local deploys | Improve deployment notes and automation scripts |
+| TD5 | SignalStore logic is not unit tested | UI flows not fully decoupled yet | Add Jest unit tests in frontend M2 |
+| TD6 | No CI-based OpenAPI spec validation | MVP deadline prioritization | Add validation job in GitHub Actions |
+
+---
+
+### Label Suggestions (if tracked in GitHub)
+
+- `💸 tech-debt`
+- `🧪 missing-tests`
+- `⚠️ security`
+- `🔧 refactor-needed`
