@@ -1,0 +1,27 @@
+@startuml SystemBoundaryContext
+
+!define RECTANGLE class
+
+title System Boundary - OpenAPI Angular Spring Example
+
+actor "Web User" as WebUser
+actor "API Consumer" as APIUser
+actor "Developer" as Dev
+database "Cloud Foundry" as CF
+rectangle "Angular Frontend\n(Angular 19)" as FE
+rectangle "Spring Boot Backend\n(WebFlux, Java 24)" as BE
+rectangle "Swagger UI / OpenAPI Spec\n(Springdoc OpenAPI 3.1)" as Swagger
+
+Dev --> FE : develop
+Dev --> BE : develop
+FE --> BE : REST (via TS client)
+BE --> Swagger : exposes API spec
+Swagger --> FE : generates TS client
+
+WebUser --> FE : uses web UI
+APIUser --> BE : consumes REST API
+
+BE --> CF : deploy
+FE --> CF : deploy
+
+@enduml

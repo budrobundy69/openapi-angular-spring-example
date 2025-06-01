@@ -1,0 +1,21 @@
+@startuml RuntimeView
+
+title Runtime View - Greeting Endpoint Example
+
+actor "User" as User
+participant "Angular Frontend\n(Angular 19)" as FE
+participant "OpenAPI TS Client\n(generated)" as TS
+participant "Spring Boot Backend\n(WebFlux)" as BE
+database "Cloud Foundry Runtime" as CF
+
+User -> FE : Types greeting input
+FE -> TS : Calls `getGreeting(name)`
+TS -> BE : GET /greet?name=UserName
+BE -> BE : Process reactive Mono
+BE --> TS : HTTP 200 "Hello, UserName!"
+TS --> FE : Update view with greeting
+FE --> User : Renders greeting response
+
+BE --> CF : Runs in deployed container
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml DeploymentView
+
+title Deployment View - OpenAPI Angular Spring Example
+
+node "Developer Machine" as Dev {
+  component "Angular CLI" as AngularCLI
+  component "IntelliJ" as IDE
+}
+
+cloud "GitHub Actions" as CI {
+  node "CI Job" {
+    component "Build & Lint"
+    component "Test & Deploy"
+  }
+}
+
+cloud "Cloud Foundry" as CF {
+  node "App Runtime" {
+    component "Spring Boot Backend (JAR)"
+    component "Angular Dist (Static Buildpack)"
+  }
+}
+
+Dev --> AngularCLI : ng build
+Dev --> IDE : Run Spring Boot
+
+AngularCLI --> CI : push code
+IDE --> CI : push code
+CI --> CF : cf push backend.jar
+CI --> CF : deploy Angular dist/
+
+@enduml
